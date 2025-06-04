@@ -9,34 +9,33 @@ class Usuario:
         raise NotImplementedError("Implementar en subclases.")
 
 class Cliente(Usuario):
-    def __init__(self, nombre, email, direccion):
+    def __init__(self, nombre, email, password):
         super().__init__(nombre, email)
-        self.direccion = direccion
+        self.password = password
 
     def mostrar_info(self):
-        print(f"Cliente -> Nombre: {self.nombre}, Email: {self.email}, Dirección: {self.direccion}")
+        print(f"Cliente -> Nombre: {self.nombre}, Email: {self.email}, Dirección: {self.password}")
 
     def guardar(self):
         cursor.execute(
             "INSERT INTO usuarios (nombre, email, tipo, extra) VALUES (?, ?, ?, ?)",
-            (self.nombre, self.email, "cliente", self.direccion)
+            (self.nombre, self.email, "cliente", self.password)
         )
         conn.commit()
 
 class Administrador(Usuario):
-    def __init__(self, nombre, email, permisos):
+    def __init__(self, nombre, email, password):
         super().__init__(nombre, email)
-        self.permisos = permisos  # permisos es una lista
+        self.password = password  # permisos es una lista
 
     def mostrar_info(self):
-        permisos_str = ", ".join(self.permisos)
-        print(f"Administrador -> Nombre: {self.nombre}, Email: {self.email}, Permisos: {permisos_str}")
+        print(f"Administrador -> Nombre: {self.nombre}, Email: {self.email}, Password: {self.password}")
 
     def guardar(self):
-        permisos_str = ",".join(self.permisos)
+        password = self.password  # Aquí podrías aplicar hashing si es necesario
         cursor.execute(
             "INSERT INTO usuarios (nombre, email, tipo, extra) VALUES (?, ?, ?, ?)",
-            (self.nombre, self.email, "admin", permisos_str)
+            (self.nombre, self.email, "admin", password)
         )
         conn.commit()
 
