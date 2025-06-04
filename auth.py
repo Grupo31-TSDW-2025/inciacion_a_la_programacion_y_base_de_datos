@@ -1,6 +1,6 @@
 from db import cursor
 from usuario import Cliente, Administrador
-from menus import menu_cliente, menu_admin  # <--- IMPORTANTE
+from menu import menu_cliente, menu_admin  # <--- IMPORTANTE
 
 def login_cliente():
     print("🔓 Login Cliente")
