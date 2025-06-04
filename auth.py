@@ -1,36 +1,36 @@
 from db import cursor
-
-def login_admin():
-    print("Iniciar sesión como Administrador")
-    email = input("Email: ").strip()
-    password = input("Contraseña: ").strip()
-
-    cursor.execute(
-        "SELECT * FROM usuarios WHERE email = ? AND tipo = 'admin' AND password = ?",
-        (email, password)
-    )
-    usuario = cursor.fetchone()
-    if usuario:
-        print(f"\n✅ Bienvenido administrador {usuario[1]}!")  # Asumiendo que nombre está en posición 1
-        # Aquí podés agregar la lógica para mostrar menú admin o seguir con el programa
-    else:
-        print("\n❌ Usuario o contraseña incorrectos. Intenta de nuevo.\n")
-        login_admin()  # Reintentar login (podés limitar intentos para evitar bucle infinito)
-
+from usuario import Cliente, Administrador
+from menus import menu_cliente, menu_admin  # <--- IMPORTANTE
 
 def login_cliente():
-    print("Iniciar sesión como Cliente")
+    print("🔓 Login Cliente")
     email = input("Email: ").strip()
     password = input("Contraseña: ").strip()
 
-    cursor.execute(
-        "SELECT * FROM usuarios WHERE email = ? AND tipo = 'cliente' AND password = ?",
-        (email, password)
-    )
-    usuario = cursor.fetchone()
-    if usuario:
-        print(f"\n✅ Bienvenido cliente {usuario[1]}!")  # Asumiendo que nombre está en posición 1
-        # Aquí podés agregar la lógica para mostrar menú cliente o seguir con el programa
+    cursor.execute("SELECT nombre, email, password FROM clientes WHERE email = ? AND password = ?", (email, password))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        nombre, email, _ = resultado
+        cliente = Cliente(nombre, email, password)
+        print(f"\n✅ Bienvenido, {cliente.nombre} (Cliente)\n")
+        menu_cliente(cliente)  # <--- LLAMADA AL MENÚ
     else:
-        print("\n❌ Usuario o contraseña incorrectos. Intenta de nuevo.\n")
-        login_cliente()  # Reintentar login (podés limitar intentos)
+        print("❌ Email o contraseña incorrectos.\n")
+
+
+def login_admin():
+    print("🔓 Login Administrador")
+    email = input("Email: ").strip()
+    password = input("Contraseña: ").strip()
+
+    cursor.execute("SELECT nombre, email, password FROM administradores WHERE email = ? AND password = ?", (email, password))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        nombre, email, _ = resultado
+        admin = Administrador(nombre, email, password)
+        print(f"\n✅ Bienvenido, {admin.nombre} (Administrador)\n")
+        menu_admin(admin)  # <--- LLAMADA AL MENÚ
+    else:
+        print("❌ Email o contraseña incorrectos.\n")

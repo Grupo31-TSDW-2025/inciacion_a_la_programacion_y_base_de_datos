@@ -1,6 +1,6 @@
+from interfaz import bienvenida
+from manage_user import gestionar_usuario
 from db import inicializar_db
-from interfaz import bienvenida, gestionar_usuario
-
 
 def main():
     inicializar_db()

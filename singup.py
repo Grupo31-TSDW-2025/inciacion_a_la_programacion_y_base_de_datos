@@ -1,4 +1,5 @@
 from usuario import Administrador, Cliente
+from auth import login_admin, login_cliente
 
 def crear_admin():
     print("🔐 Creando Administrador...")
@@ -9,6 +10,7 @@ def crear_admin():
     admin.guardar()
     print("✅ Administrador guardado.\n")
     admin.mostrar_info()
+    login_admin()
 
 
 def crear_cliente():
@@ -20,3 +22,4 @@ def crear_cliente():
     cliente.guardar()
     print("✅ Cliente guardado.\n")
     cliente.mostrar_info()
+    login_cliente()

@@ -1,6 +1,3 @@
-from auth import login_admin, login_cliente
-from singup import crear_admin, crear_cliente
-
 def bienvenida():
     print("="*40)
     print("🟢 Bienvenido al Sistema de Usuarios 🟢")
@@ -11,22 +8,3 @@ def bienvenida():
     print("3. Salir")
 
     return input("Elige una opción (1/2/3): ")
-
-
-def gestionar_usuario(tipo):
-    while True:
-        respuesta = input(f"¿Ya tienes usuario {tipo}? (s/n): ").strip().lower()
-        if respuesta == "s":
-            if tipo == "admin":
-                login_admin()
-            else:
-                login_cliente()
-            break
-        elif respuesta == "n":
-            if tipo == "admin":
-                crear_admin()
-            else:
-                crear_cliente()
-            break
-        else:
-            print("Por favor, responde 's' o 'n'.")

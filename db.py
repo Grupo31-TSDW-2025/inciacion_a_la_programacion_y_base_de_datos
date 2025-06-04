@@ -1,17 +1,27 @@
 import sqlite3
 
-# Conexión en memoria (puede cambiarse por archivo .db)
-conn = sqlite3.connect(":memory:")
+conn = sqlite3.connect("mi_base.db")
 cursor = conn.cursor()
 
 def inicializar_db():
+    # Crear tabla de clientes
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS usuarios (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nombre TEXT,
-            email TEXT,
-            tipo TEXT,
-            extra TEXT
-        )
+    CREATE TABLE IF NOT EXISTS clientes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL
+    )
     """)
+
+    # Crear tabla de administradores
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS administradores (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL
+    )
+    """)
+
     conn.commit()
