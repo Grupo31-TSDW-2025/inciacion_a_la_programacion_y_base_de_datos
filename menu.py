@@ -1,15 +1,15 @@
 from products import cargar_productos, ver_tabla_productos, modificar_producto, borrar_producto
 
 def menu_admin(admin):
-    
     from main import main
-    
+
     opciones = {
         "1": admin.mostrar_info,
         "2": cargar_productos,
         "3": ver_tabla_productos,
         "4": modificar_producto,
-        "5": borrar_producto
+        "5": borrar_producto,
+        "6": admin.eliminar_cliente  # ✅ Ahora llama al método de instancia
     }
 
     while True:
@@ -19,14 +19,15 @@ def menu_admin(admin):
         print("3. Ver tabla de productos")
         print("4. Modificar producto")
         print("5. Eliminar producto")
-        print("6. Salir del menú administrador")
+        print("6. Eliminar cliente")
+        print("7. Salir del menú administrador")
         opcion = input("Elige una opción: ").strip()
 
-        if opcion == "6":
+        if opcion == "7":
             print("🔁 Volviendo al menú principal...\n")
             main()
         elif opcion in opciones:
-            opciones[opcion]()
+            opciones[opcion]()  # ✅ Ejecuta el método correspondiente
         else:
             print("❌ Opción inválida. Intenta de nuevo.\n")
 
