@@ -19,7 +19,7 @@ def login_cliente():
             cliente = Cliente(nombre, email, password)
             print(f"\n✅ Bienvenido, {cliente.nombre} (Cliente)\n")
             menu_cliente(cliente)
-            break  # salir del bucle después de login exitoso
+            break  
         else:
             intentos += 1
             print("❌ Email o contraseña incorrectos.\n")

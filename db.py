@@ -4,7 +4,7 @@ conn = sqlite3.connect("mi_base.db")
 cursor = conn.cursor()
 
 def inicializar_db():
-    # Crear tabla de clientes
+    
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS clientes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,7 +14,7 @@ def inicializar_db():
     )
     """)
 
-    # Crear tabla de administradores
+    
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS administradores (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

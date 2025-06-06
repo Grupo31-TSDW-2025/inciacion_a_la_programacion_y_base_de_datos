@@ -39,7 +39,7 @@ class Administrador(Usuario):
         conn.commit()
 
     def eliminar_cliente(self):
-        # Obtener todos los clientes
+
         cursor.execute("SELECT id, nombre, email FROM clientes")
         clientes = cursor.fetchall()
 

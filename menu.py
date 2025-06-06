@@ -9,7 +9,7 @@ def menu_admin(admin):
         "3": ver_tabla_productos,
         "4": modificar_producto,
         "5": borrar_producto,
-        "6": admin.eliminar_cliente  # ✅ Ahora llama al método de instancia
+        "6": admin.eliminar_cliente  
     }
 
     while True:
@@ -27,7 +27,7 @@ def menu_admin(admin):
             print("🔁 Volviendo al menú principal...\n")
             main()
         elif opcion in opciones:
-            opciones[opcion]()  # ✅ Ejecuta el método correspondiente
+            opciones[opcion]()  
         else:
             print("❌ Opción inválida. Intenta de nuevo.\n")
 
