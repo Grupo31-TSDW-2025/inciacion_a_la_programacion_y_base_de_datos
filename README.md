@@ -99,7 +99,7 @@ Se utiliza una base de datos **SQLite** para almacenar la información persisten
 
 ## ✍️ Autor
 
-**Ivo Konstantinow** – Desarrollador Web & Estudiante de Programación
+**Ivo Konstantinow** – Estudiante de desarrollo web
 
 **Lourdes Del Valle Pérez** – Estudiante de desarrollo web
 
